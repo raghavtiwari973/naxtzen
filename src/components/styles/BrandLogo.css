@@ -1,0 +1,23 @@
+.brand-logo-img {
+  height: clamp(40px, 6vw, 56px);
+  width: auto;
+  max-width: min(280px, 55vw);
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+}
+
+.navbar-logo .brand-logo-img {
+  height: clamp(42px, 5.5vw, 52px);
+  max-width: 220px;
+}
+
+.footer-logo .brand-logo-img {
+  height: clamp(44px, 6vw, 58px);
+  max-width: 260px;
+}
+
+.loader-title .brand-logo-img {
+  height: clamp(36px, 5vw, 48px);
+  max-width: 200px;
+}

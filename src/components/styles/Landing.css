@@ -1,17 +1,33 @@
 .landing-section {
   width: 100%;
   max-width: var(--cMaxWidth);
-  margin: auto;
+  margin: 0 auto;
   position: relative;
-  height: var(--vh);
+  min-height: var(--vh);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: clamp(100px, 14vh, 140px) 0 clamp(48px, 8vh, 80px);
+  box-sizing: border-box;
 }
 
 .landing-container {
   width: var(--cWidth);
-  margin: auto;
-  height: 100%;
+  margin: 0 auto;
   position: relative;
-  max-width: var(--cMaxWidth);
+  max-width: min(1200px, var(--cMaxWidth));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2rem, 5vw, 3rem);
+  z-index: 10;
+}
+
+.landing-media {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
 }
 
 .landing-circle1 {
@@ -33,9 +49,11 @@
   top: 0;
   width: 100%;
   height: 130px;
-  background-image: linear-gradient(0deg,
-      transparent,
-      var(--backgroundColor) 70%);
+  background-image: linear-gradient(
+    0deg,
+    transparent,
+    var(--backgroundColor) 70%
+  );
   pointer-events: none;
   z-index: 12;
   opacity: 0;
@@ -74,324 +92,134 @@
   }
 }
 
-.landing-video,
-.landing-image {
-  position: absolute;
-  bottom: 0;
-  height: 95%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.landing-image img {
-  height: 100%;
-  z-index: 2;
-  position: relative;
-}
-
-.character-rim {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  z-index: 1;
-  background-color: #22d3ee;
-  transform: translate(-50%, 36%) scaleX(1.4);
-  box-shadow: inset 66px 35px 85px 0px rgba(0, 180, 180, 0.65);
-  filter: blur(50px);
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 100%) scale(1.4);
-  opacity: 0;
-}
-
-.character-model {
-  height: 80%;
-  height: 80vh;
-  position: absolute;
-  max-width: 1920px;
-  max-height: 1080px;
-  transform: translateX(-50%);
-  width: 100%;
-  left: 50%;
-  z-index: 0;
-  bottom: 50px;
-  pointer-events: inherit;
-}
-
-.character-model::after {
-  content: "";
-  width: 100vw;
-  height: 250px;
-  background-image: linear-gradient(to bottom,
-      transparent,
-      var(--backgroundColor) 70%);
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9;
-  position: absolute;
-}
-
-.character-model::before {
-  content: "";
-  width: 100vw;
-  height: 700px;
-  background-color: var(--backgroundColor);
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9;
-  position: absolute;
-}
-
-.character-loaded .character-rim {
-  animation: backlight 3s forwards;
-  animation-delay: 0.3s;
-  opacity: 0;
-}
-
-.character-model canvas {
-  position: relative;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.character-hover {
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  top: 50%;
-  left: 50%;
-  z-index: 3;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-}
-
 .landing-intro {
-  position: absolute;
-  z-index: 9;
-  top: 12%;
-  left: 0;
+  width: 100%;
+  max-width: 820px;
+  z-index: 20;
+  padding: 0;
+  text-align: center;
+  margin: 0 auto;
+  flex: 1 1 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.landing-intro h2 {
-  margin: 0;
+.agency-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   color: var(--accentColor);
-  font-size: 22px;
-  font-weight: 300;
-  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accentColor);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 10px var(--accentColor);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
 }
 
 .landing-intro h1 {
-  margin: 0;
-  letter-spacing: 2px;
-  font-size: 28px;
-  line-height: 28px;
-  font-weight: 500;
-  font-family: "Geist", sans-serif;
+  font-size: clamp(32px, 5.5vw, 72px);
+  line-height: 1.12;
+  font-weight: 800;
+  margin: 0 0 20px 0;
+  text-align: center !important;
 }
 
-/* .landing-intro h1 span {
-   font-weight: 200; 
-} */
-
-.landing-info {
-  position: absolute;
-  right: 50%;
-  transform: translateX(50%);
-  bottom: 40px;
-  top: inherit;
-  z-index: 9;
+.landing-desc {
+  font-size: clamp(15px, 1.8vw, 18px);
+  line-height: 1.65;
+  color: var(--textMuted);
+  max-width: 620px;
+  margin: 0 auto 36px auto;
+  text-align: center !important;
 }
 
-.landing-info h3 {
-  font-size: 22px;
-  letter-spacing: 2px;
-  font-weight: 300;
-  color: var(--accentColor);
-  margin: 0;
-}
-
-.landing-info h2 {
-  margin: 0;
-  margin-top: -20px;
-  margin-left: 20px;
-  font-family: "Geist", sans-serif;
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 40px;
-  position: relative;
+.landing-ctas {
   display: flex;
-  flex-wrap: nowrap;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.landing-h2-info-1 {
-  position: absolute;
-  top: 0;
-}
-
-h2.landing-info-h2 {
-  color: #14b8a6;
-  font-size: 42px;
-  width: 120%;
-  margin: 0;
-  font-family: "Geist", sans-serif;
-  font-weight: 600;
-  position: relative;
-  margin-left: -5px;
-}
-
-.landing-h2-2 {
-  position: absolute;
-  top: 0;
-}
-
-.landing-info-h2::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 120%;
-  z-index: 3;
-  background-image: linear-gradient(0deg,
-      var(--backgroundColor) 40%,
-      rgba(0, 0, 0, 0) 110%);
-  top: 0;
-  left: 0;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 @media screen and (min-width: 500px) {
   .landing-circle2 {
     display: block;
   }
-
-  .character-model {
-    z-index: 0;
-  }
-
-  .landing-info h3 {
-    font-size: 18px;
-  }
-
-  .landing-intro h2 {
-    font-size: 18px;
-  }
-
-  .landing-intro h1 {
-    font-size: 30px;
-    line-height: 30px;
-  }
-
-  .landing-info h2 {
-    font-size: 35px;
-    line-height: 40px;
-  }
-
-  h2.landing-info-h2 {
-    font-size: 38px;
-  }
 }
 
 @media screen and (min-width: 768px) {
-  .character-model {
-    height: 80vh;
-  }
-
-  .landing-intro h2 {
-    font-size: 25px;
-  }
-
-  .landing-intro h1 {
-    font-size: 40px;
-    line-height: 35px;
-  }
-
-  .landing-info h3 {
-    font-size: 25px;
-  }
-
-  .landing-info h2 {
-    font-size: 45px;
-    line-height: 42px;
-  }
-
-  h2.landing-info-h2 {
-    font-size: 55px;
-  }
-}
-
-@media screen and (min-width: 1025px) {
-  .character-model {
-    height: 100vh;
-    bottom: 0;
-    z-index: 11;
-    position: fixed;
-  }
-
-  .character-model::after,
-  .character-model::before {
-    display: none;
-  }
-
   .landing-intro {
-    top: 50%;
-    left: auto;
-    right: 66%;
-    transform: translate(0%, -50%);
-  }
-
-  .landing-info {
-    bottom: auto;
-    top: 51%;
-    z-index: inherit;
-    text-align: left;
-    transform: translate(0%, -50%);
-    right: auto;
-    left: 66%;
+    max-width: 900px;
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 900px) {
+  .landing-container {
+    justify-content: space-between;
+  }
   .landing-intro {
-    top: 50%;
-    left: auto;
-    right: 70%;
-    transform: translate(0%, -50%);
-  }
-
-  .landing-info {
-    bottom: auto;
-    top: 51%;
-    z-index: inherit;
     text-align: left;
-    transform: translate(0%, -50%);
-    right: auto;
-    left: 70%;
+    margin: 0;
+    align-items: flex-start;
+  }
+  .landing-intro h1 {
+    text-align: left !important;
+  }
+  .landing-desc {
+    margin: 0 0 36px 0;
+    text-align: left !important;
+  }
+  .landing-ctas {
+    justify-content: flex-start;
   }
 }
 
-@media screen and (min-width: 1600px) {
-  .landing-intro h2 {
-    font-size: 35px;
-  }
+.fade-in {
+  opacity: 0;
+  animation: heroFadeIn 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
 
-  .landing-intro h1 {
-    font-size: 60px;
-    line-height: 55px;
-  }
+.fade-delay-1 { animation-delay: 0.15s; }
+.fade-delay-2 { animation-delay: 0.30s; }
+.fade-delay-3 { animation-delay: 0.45s; }
 
-  .landing-info h3 {
-    font-size: 35px;
+@keyframes heroFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
   }
-
-  .landing-info h2 {
-    font-size: 65px;
-    line-height: 62px;
-  }
-
-  h2.landing-info-h2 {
-    font-size: 75px;
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

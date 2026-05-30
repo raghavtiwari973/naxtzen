@@ -129,25 +129,25 @@ const TechStack = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const threshold = document
-        .getElementById("work")!
-        .getBoundingClientRect().top;
-      setIsActive(scrollY > threshold);
+      const workElement = document.getElementById("work");
+      if (workElement) {
+        const threshold = workElement.getBoundingClientRect().top;
+        setIsActive(threshold < window.innerHeight);
+      }
     };
-    document.querySelectorAll(".header a").forEach((elem) => {
-      const element = elem as HTMLAnchorElement;
-      element.addEventListener("click", () => {
-        const interval = setInterval(() => {
-          handleScroll();
-        }, 10);
-        setTimeout(() => {
-          clearInterval(interval);
-        }, 1000);
-      });
-    });
+
+    const handleClick = () => {
+      const interval = setInterval(handleScroll, 10);
+      setTimeout(() => clearInterval(interval), 1000);
+    };
+
+    const links = document.querySelectorAll(".header a");
+    links.forEach((elem) => elem.addEventListener("click", handleClick));
+
     window.addEventListener("scroll", handleScroll);
+
     return () => {
+      links.forEach((elem) => elem.removeEventListener("click", handleClick));
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);

@@ -19,7 +19,15 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   --accentColor: #5eead4;
-  --backgroundColor: #0a0e17;
+  --accentSecondary: #6366f1;
+  --backgroundColor: #050810;
+  --surfaceColor: #0e1322;
+  --surfaceColorMuted: #1e293b;
+  --textColor: #eae5ec;
+  --textMuted: #94a3b8;
+  --cardShadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+  --glassBorder: 1px solid rgba(255, 255, 255, 0.08);
+  --glassBg: rgba(14, 19, 34, 0.7);
   --vh: 100vh;
   --vh: 100svh;
 }
@@ -31,6 +39,7 @@ h4,
 h5,
 h6 {
   font-family: "Geist", sans-serif;
+  letter-spacing: -0.02em;
 }
 
 body {
@@ -40,6 +49,7 @@ body {
 a {
   color: inherit;
   text-decoration: inherit;
+  transition: all 0.3s ease;
 }
 
 a:hover {
@@ -130,8 +140,152 @@ body {
   }
 }
 
+:root {
+  --section-padding-y: clamp(72px, 10vw, 120px);
+  --section-gap: clamp(40px, 5vw, 64px);
+}
+
 @media screen and (max-width: 900px) {
   .techstack h2 {
     font-size: 40px;
   }
+}
+
+/* Premium Global Styles & Utilities */
+.section-container {
+  padding: var(--section-padding-y) 0;
+  position: relative;
+  width: var(--cWidth);
+  max-width: min(1200px, var(--cMaxWidth));
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.section-header-block,
+.services-header-block,
+.benefits-header-block,
+.featured-header-block,
+.work-header-block,
+.process-header-block,
+.pricing-header-block,
+.faq-header-block {
+  text-align: center;
+  margin-bottom: var(--section-gap);
+}
+
+.section-header-block p,
+.services-header-desc,
+.benefits-header-desc,
+.featured-header-desc,
+.work-header-desc,
+.process-header-desc,
+.pricing-header-desc,
+.faq-header-desc {
+  font-size: clamp(15px, 1.8vw, 17px);
+  line-height: 1.65;
+  color: var(--textMuted);
+  max-width: 640px;
+  margin: 16px auto 0;
+}
+
+@media screen and (max-width: 768px) {
+  .section-container {
+    padding: clamp(48px, 12vw, 72px) 0;
+  }
+}
+
+.techstack-loading {
+  text-align: center;
+  padding: 48px;
+  color: var(--textMuted);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Glassmorphism panel base */
+.glass-panel {
+  background: var(--glassBg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: var(--glassBorder);
+  border-radius: 16px;
+  box-shadow: var(--cardShadow);
+}
+
+.glow-btn-primary {
+  background: linear-gradient(135deg, var(--accentColor) 0%, var(--accentSecondary) 100%);
+  color: #050810 !important;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: none;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(94, 234, 212, 0.4);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+
+.glow-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(94, 234, 212, 0.6);
+  filter: brightness(1.1);
+}
+
+.glow-btn-secondary {
+  background: transparent;
+  color: var(--textColor) !important;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+
+.glow-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accentColor);
+  color: var(--accentColor) !important;
+  transform: translateY(-2px);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--textColor) 30%, var(--accentColor) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.accent-text {
+  color: var(--accentColor);
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050810;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accentColor);
 }

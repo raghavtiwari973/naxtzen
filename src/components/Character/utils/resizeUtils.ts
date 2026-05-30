@@ -14,10 +14,15 @@ export default function handleResize(
   const height = canvas3d.height;
   renderer.setSize(width, height);
   camera.aspect = width / height;
+  if (window.innerWidth > 1024) {
+    camera.position.x = 2.2;
+  } else {
+    camera.position.x = 0;
+  }
   camera.updateProjectionMatrix();
-  const workTrigger = ScrollTrigger.getById("work");
   ScrollTrigger.getAll().forEach((trigger) => {
-    if (trigger != workTrigger) {
+    const id = trigger.vars?.id as string | undefined;
+    if (id?.startsWith("char-") || id === "stats-cards" || id === "process-steps") {
       trigger.kill();
     }
   });

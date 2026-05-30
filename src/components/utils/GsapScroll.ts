@@ -1,191 +1,245 @@
-import * as THREE from "three";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export function setCharTimeline(
-  character: THREE.Object3D<THREE.Object3DEventMap> | null,
-  camera: THREE.PerspectiveCamera
+gsap.registerPlugin(ScrollTrigger);
+
+/** @deprecated Character removed — kept so legacy Character utils still compile */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function setCharTimeline(..._args: unknown[]) {
+  /* no-op */
+}
+
+type RevealOptions = {
+  y?: number;
+  x?: number;
+  scale?: number;
+  stagger?: number;
+  duration?: number;
+  start?: string;
+  scrub?: boolean;
+};
+
+function revealOnScroll(
+  selector: string,
+  trigger: string,
+  options: RevealOptions = {}
 ) {
-  let intensity: number = 0;
-  setInterval(() => {
-    intensity = Math.random();
-  }, 200);
-  const tl1 = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".landing-section",
-      start: "top top",
-      end: "bottom top",
-      scrub: true,
-      invalidateOnRefresh: true,
-    },
-  });
-  const tl2 = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".about-section",
-      start: "center 55%",
-      end: "bottom top",
-      scrub: true,
-      invalidateOnRefresh: true,
-    },
-  });
-  const tl3 = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".whatIDO",
-      start: "top top",
-      end: "bottom top",
-      scrub: true,
-      invalidateOnRefresh: true,
-    },
-  });
-  let screenLight: any, monitor: any;
-  character?.children.forEach((object: any) => {
-    if (object.name === "Plane004") {
-      object.children.forEach((child: any) => {
-        child.material.transparent = true;
-        child.material.opacity = 0;
-        if (child.material.name === "Material.018") {
-          monitor = child;
-          child.material.color.set("#FFFFFF");
-        }
-      });
-    }
-    if (object.name === "screenlight") {
-      object.material.transparent = true;
-      object.material.opacity = 0;
-      object.material.emissive.set("#B0F5EA");
-      gsap.timeline({ repeat: -1, repeatRefresh: true }).to(object.material, {
-        emissiveIntensity: () => intensity * 8,
-        duration: () => Math.random() * 0.6,
-        delay: () => Math.random() * 0.1,
-      });
-      screenLight = object;
-    }
-  });
-  let neckBone = character?.getObjectByName("spine005");
-  if (window.innerWidth > 1024) {
-    if (character) {
-      tl1
-        .fromTo(character.rotation, { y: 0 }, { y: 0.7, duration: 1 }, 0)
-        .to(camera.position, { z: 22 }, 0)
-        .fromTo(".character-model", { x: 0 }, { x: "-25%", duration: 1 }, 0)
-        .to(".landing-container", { opacity: 0, duration: 0.4 }, 0)
-        .to(".landing-container", { y: "40%", duration: 0.8 }, 0)
-        .fromTo(".about-me", { y: "-50%" }, { y: "0%" }, 0);
+  const elements = gsap.utils.toArray<HTMLElement>(selector);
+  if (!elements.length) return;
 
-      tl2
-        .to(
-          camera.position,
-          { z: 75, y: 8.4, duration: 6, delay: 2, ease: "power3.inOut" },
-          0
-        )
-        .to(".about-section", { y: "30%", duration: 6 }, 0)
-        .to(".about-section", { opacity: 0, delay: 3, duration: 2 }, 0)
-        .fromTo(
-          ".character-model",
-          { pointerEvents: "inherit" },
-          { pointerEvents: "none", x: "-12%", delay: 2, duration: 5 },
-          0
-        )
-        .to(character.rotation, { y: 0.92, x: 0.12, delay: 3, duration: 3 }, 0)
-        .to(neckBone!.rotation, { x: 0.6, delay: 2, duration: 3 }, 0)
-        .to(monitor.material, { opacity: 1, duration: 0.8, delay: 3.2 }, 0)
-        .to(screenLight.material, { opacity: 1, duration: 0.8, delay: 4.5 }, 0)
-        .fromTo(
-          ".what-box-in",
-          { display: "none" },
-          { display: "flex", duration: 0.1, delay: 6 },
-          0
-        )
-        .fromTo(
-          monitor.position,
-          { y: -10, z: 2 },
-          { y: 0, z: 0, delay: 1.5, duration: 3 },
-          0
-        )
-        .fromTo(
-          ".character-rim",
-          { opacity: 1, scaleX: 1.4 },
-          { opacity: 0, scale: 0, y: "-70%", duration: 5, delay: 2 },
-          0.3
-        );
+  const {
+    y = 48,
+    x = 0,
+    scale = 1,
+    stagger = 0.1,
+    duration = 0.85,
+    start = "top 82%",
+    scrub = false,
+  } = options;
 
-      tl3
-        .fromTo(
-          ".character-model",
-          { y: "0%" },
-          { y: "-100%", duration: 4, ease: "none", delay: 1 },
-          0
-        )
-        .fromTo(".whatIDO", { y: 0 }, { y: "15%", duration: 2 }, 0)
-        .to(character.rotation, { x: -0.04, duration: 2, delay: 1 }, 0);
+  gsap.fromTo(
+    elements,
+    {
+      opacity: 0,
+      y,
+      x,
+      scale: scale === 1 ? 1 : scale * 0.92,
+      filter: "blur(6px)",
+    },
+    {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      duration,
+      stagger,
+      ease: scrub ? "none" : "power3.out",
+      scrollTrigger: {
+        trigger,
+        start,
+        toggleActions: scrub ? undefined : "play none none reverse",
+        scrub: scrub || undefined,
+      },
     }
-  } else {
-    if (character) {
-      const tM2 = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".what-box-in",
-          start: "top 70%",
-          end: "bottom top",
-        },
-      });
-      tM2.to(".what-box-in", { display: "flex", duration: 0.1, delay: 0 }, 0);
-    }
-  }
+  );
 }
 
 export function setAllTimeline() {
-  const careerTimeline = gsap.timeline({
+  /* Section headers */
+  gsap.utils.toArray<HTMLElement>(".section-title").forEach((title) => {
+    gsap.fromTo(
+      title,
+      { opacity: 0, y: 44 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.95,
+        ease: "power3.out",
+        scrollTrigger: {
+          id: "section-title",
+          trigger: title.closest("section, .about-section, footer, [class*='-section']") ?? title,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  });
+
+  gsap.utils.toArray<HTMLElement>(".section-subtitle").forEach((sub) => {
+    gsap.fromTo(
+      sub,
+      { opacity: 0, x: -24 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.65,
+        ease: "power2.out",
+        scrollTrigger: {
+          id: "section-subtitle",
+          trigger: sub.closest("section, .about-section, footer, [class*='-section']") ?? sub,
+          start: "top 88%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  });
+
+  const headerDesc =
+    ".services-header-desc, .benefits-header-desc, .featured-header-desc, .work-header-desc, .process-header-desc, .pricing-header-desc, .faq-header-desc, .about-intro-para";
+  gsap.utils.toArray<HTMLElement>(headerDesc).forEach((el) => {
+    gsap.fromTo(
+      el,
+      { opacity: 0, y: 24 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  });
+
+  /* About */
+  revealOnScroll(".about-feature-item", ".about-section", { y: 36, stagger: 0.12 });
+  revealOnScroll(".illustration-card, .illustration-badge", ".about-section", {
+    y: 56,
+    scale: 0.95,
+    stagger: 0.15,
+    start: "top 78%",
+  });
+
+  /* Stats */
+  revealOnScroll(".stats-section .counter-card", ".stats-section", {
+    y: 50,
+    stagger: 0.12,
+    start: "top 78%",
+  });
+  revealOnScroll(".stats-section .status-card", ".stats-section", {
+    y: 40,
+    stagger: 0.1,
+    start: "top 75%",
+  });
+
+  /* Services */
+  revealOnScroll(".service-card", ".services-section", {
+    y: 56,
+    stagger: 0.08,
+    start: "top 80%",
+  });
+
+  /* Benefits */
+  revealOnScroll(".benefit-card", ".benefits-section", {
+    y: 48,
+    stagger: 0.07,
+    start: "top 80%",
+  });
+
+  /* Featured projects */
+  revealOnScroll(".featured-row", ".featured-section", {
+    y: 64,
+    stagger: 0.2,
+    start: "top 85%",
+  });
+
+  /* Portfolio */
+  revealOnScroll(".portfolio-controls", ".work-section", { y: 32, stagger: 0 });
+  revealOnScroll(".portfolio-card", ".work-section", {
+    y: 52,
+    stagger: 0.06,
+    start: "top 82%",
+  });
+
+  /* Process */
+  const processTimeline = gsap.timeline({
     scrollTrigger: {
-      trigger: ".career-section",
-      start: "top 30%",
-      end: "100% center",
+      id: "section-process",
+      trigger: ".process-section",
+      start: "top 40%",
+      end: "80% center",
       scrub: true,
       invalidateOnRefresh: true,
     },
   });
-  careerTimeline
-    .fromTo(
-      ".career-timeline",
-      { maxHeight: "10%" },
-      { maxHeight: "100%", duration: 0.5 },
-      0
-    )
 
+  processTimeline
     .fromTo(
-      ".career-timeline",
-      { opacity: 0 },
-      { opacity: 1, duration: 0.1 },
+      ".process-timeline-line",
+      { scaleY: 0.05, transformOrigin: "top center" },
+      { scaleY: 1, duration: 0.6 },
       0
     )
     .fromTo(
-      ".career-info-box",
-      { opacity: 0 },
-      { opacity: 1, stagger: 0.1, duration: 0.5 },
-      0
-    )
-    .fromTo(
-      ".career-dot",
-      { animationIterationCount: "infinite" },
-      {
-        animationIterationCount: "1",
-        delay: 0.3,
-        duration: 0.1,
+      ".process-step-card",
+      { opacity: 0, x: -36, filter: "blur(4px)" },
+      { opacity: 1, x: 0, filter: "blur(0px)", stagger: 0.08, duration: 0.55 },
+      0.12
+    );
+
+  /* Reviews */
+  revealOnScroll(".reviews-summary-card", ".reviews-section", { y: 40 });
+  revealOnScroll(".review-card", ".reviews-section", { y: 48, stagger: 0.15 });
+
+  /* Pricing */
+  revealOnScroll(".pricing-card", ".pricing-section", {
+    y: 56,
+    stagger: 0.12,
+    start: "top 80%",
+  });
+
+  /* FAQ */
+  revealOnScroll(".faq-item", ".faq-section", {
+    y: 32,
+    stagger: 0.08,
+    start: "top 85%",
+  });
+
+  /* Contact form */
+  revealOnScroll(".contact-info-panel", ".contact-form-section", { x: -40, y: 0 });
+  revealOnScroll(".contact-inputs-block", ".contact-form-section", { x: 40, y: 0 });
+
+  /* Footer */
+  revealOnScroll(".footer-brand-col", ".footer-section", { y: 36 });
+  revealOnScroll(".footer-links-col", ".footer-section", { y: 36, stagger: 0.1 });
+
+  /* Subtle parallax on hero while scrolling */
+  if (window.innerWidth > 768) {
+    gsap.to(".landing-intro", {
+      y: -80,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".landing-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1.2,
       },
-      0
-    );
-
-  if (window.innerWidth > 1024) {
-    careerTimeline.fromTo(
-      ".career-section",
-      { y: 0 },
-      { y: "20%", duration: 0.5, delay: 0.2 },
-      0
-    );
-  } else {
-    careerTimeline.fromTo(
-      ".career-section",
-      { y: 0 },
-      { y: 0, duration: 0.5, delay: 0.2 },
-      0
-    );
+    });
   }
+
+  ScrollTrigger.refresh();
 }

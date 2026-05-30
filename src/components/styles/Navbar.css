@@ -3,81 +3,497 @@
   max-width: var(--cMaxWidth);
   width: var(--cWidth);
   justify-content: space-between;
-  padding: 20px 0px;
-  margin-bottom: -100px;
+  align-items: center;
+  padding: 16px 24px;
   box-sizing: border-box;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  top: 0;
+  top: 20px;
   z-index: 9999;
+  border-radius: 50px;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.header ul {
-  font-size: 12px;
+
+.navbar-logo {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.desktop-menu {
+  display: none;
+  list-style: none;
   margin: 0;
   padding: 0;
-  list-style: none;
-  column-gap: 40px;
-  row-gap: 8px;
-  align-items: end;
+  gap: 24px;
 }
-.header ul li {
-  margin-left: 0px;
-  letter-spacing: 1px;
-  color: #ccc;
+
+.desktop-menu li {
+  font-size: 13px;
   font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-cta {
+  display: none !important;
+}
+
+/* Mobile Hamburger button */
+.hamburger-btn {
+  background: transparent;
+  border: none;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px;
+  z-index: 10000;
 }
-.navbar-connect {
-  position: absolute;
-  display: none;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+
+.hamburger-btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--textColor);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+  background-color: var(--accentColor);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+  background-color: var(--accentColor);
+}
+
+/* Mobile Menu Panel */
+.mobile-menu {
+  position: fixed;
+  top: 90px;
+  right: -100%;
+  width: calc(100% - 30px);
+  max-width: 320px;
+  z-index: 9990;
+  border-radius: 20px !important;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding: 30px 24px;
+  box-sizing: border-box;
+}
+
+.mobile-menu.open {
+  right: 15px;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mobile-menu ul li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 12px;
+}
+
+.mobile-menu ul li a {
   font-size: 15px;
+  font-weight: 600;
   letter-spacing: 1px;
-  font-weight: 500;
+  color: var(--textColor);
+  display: block;
 }
-.navbar-title {
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.2px;
+
+.mobile-menu ul li a:hover {
+  color: var(--accentColor);
+  padding-left: 5px;
 }
+
+.mobile-cta-li {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  margin-top: 10px;
+}
+
+.mobile-cta-li a {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
 @media only screen and (min-width: 500px) {
   .header {
-    padding: 20px 0px;
+    width: var(--cWidth);
+    padding: 16px 30px;
   }
-  .header ul {
-    flex-direction: row;
-    align-items: center;
+}
+
+@media only screen and (min-width: 1024px) {
+  .header {
+    top: 30px;
+    padding: 14px 40px;
+  }
+  
+  .desktop-menu {
+    display: flex;
+  }
+  
+  .nav-cta {
+    display: inline-flex !important;
+  }
+  
+  .hamburger-btn {
+    display: none;
+  }
+  
+  .mobile-menu {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .desktop-menu {
+    gap: 32px;
+  }
+  .desktop-menu li {
     font-size: 14px;
   }
-  .header ul li {
-    color: #eae5ec;
-  }
-  .navbar-title {
-    font-size: 16px;
-  }
 }
-@media only screen and (min-width: 900px) {
-  .navbar-connect {
-    display: block;
-  }
+
+/* =========================================
+   LIGHT THEME OVERRIDES 
+   ========================================= */
+:root[data-theme="light"] {
+  --textColor: #0f172a;
+  --accentColor: #2563eb;
+  --textMuted: #475569;
+  --backgroundColor: #f8fafc;
+  --cardShadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+  --glassBorder: 1px solid rgba(0, 0, 0, 0.1);
+  --accentSecondary: #9333ea;
 }
-@media only screen and (min-width: 1200px) {
-  .header {
-    padding: 35px 0px;
-  }
-  .header ul {
-    column-gap: 80px;
-    font-size: 16px;
-  }
-  .navbar-connect {
-    font-size: 16px;
-  }
-  .navbar-title {
-    font-size: 18px;
-  }
+
+/* Override Body & Main Backgrounds */
+[data-theme="light"] body,
+[data-theme="light"] .container-main,
+[data-theme="light"] #smooth-wrapper,
+[data-theme="light"] #smooth-content,
+[data-theme="light"] .landing-section,
+[data-theme="light"] .whatIDO,
+[data-theme="light"] .career-section,
+[data-theme="light"] .stats-section,
+[data-theme="light"] .featured-section,
+[data-theme="light"] .services-section,
+[data-theme="light"] .work-section,
+[data-theme="light"] .about-section,
+[data-theme="light"] .pricing-section,
+[data-theme="light"] .contact-form-section,
+[data-theme="light"] .footer-section,
+[data-theme="light"] .faq-section,
+[data-theme="light"] .reviews-section,
+[data-theme="light"] .benefits-section,
+[data-theme="light"] .process-section {
+  background-color: #f8fafc !important;
+  background: #f8fafc !important;
+  color: var(--textColor) !important;
+}
+
+/* Invert Glass Panels */
+[data-theme="light"] .glass-panel,
+[data-theme="light"] .mobile-menu,
+[data-theme="light"] .services-drawer,
+[data-theme="light"] .pricing-modal,
+[data-theme="light"] .portfolio-modal,
+[data-theme="light"] .success-modal,
+[data-theme="light"] .counter-card,
+[data-theme="light"] .status-card,
+[data-theme="light"] .review-card,
+[data-theme="light"] .benefit-card,
+[data-theme="light"] .faq-item,
+[data-theme="light"] .process-step-card,
+[data-theme="light"] .what-content,
+[data-theme="light"] .featured-feedback {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05) !important;
+  color: var(--textColor) !important;
+}
+
+/* Invert Typography */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6,
+[data-theme="light"] .section-title,
+[data-theme="light"] .what-box h2,
+[data-theme="light"] .career-section h2,
+[data-theme="light"] .score-num,
+[data-theme="light"] .status-num,
+[data-theme="light"] .counter-number-wrapper,
+[data-theme="light"] .info-item a,
+[data-theme="light"] .info-item p,
+[data-theme="light"] .price-val {
+  color: #050810 !important;
+}
+
+[data-theme="light"] p,
+[data-theme="light"] li,
+[data-theme="light"] label,
+[data-theme="light"] .counter-label,
+[data-theme="light"] a:not(.glow-btn-primary):not(.glow-btn-secondary):not(.nav-cta):not(.pricing-cta-btn) {
+  color: #334155 !important;
+}
+
+/* Gradients & Buttons */
+[data-theme="light"] .gradient-text {
+  background: linear-gradient(90deg, #2563eb, #9333ea) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+[data-theme="light"] .glow-btn-primary {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4) !important;
+}
+
+[data-theme="light"] .glow-btn-secondary {
+  background-color: transparent !important;
+  border: 1px solid #2563eb !important;
+  color: #2563eb !important;
+}
+
+/* Form Inputs */
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] .portfolio-search-box input {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  color: #0f172a !important;
+}
+
+/* Secondary elements, Icons, Socials & Tags */
+[data-theme="light"] .footer-social-row a,
+[data-theme="light"] .contact-social-row a,
+[data-theme="light"] .slider-arrow-btn,
+[data-theme="light"] .filter-btn,
+[data-theme="light"] .portfolio-search-box,
+[data-theme="light"] .info-item-icon,
+[data-theme="light"] .what-tags,
+[data-theme="light"] .tech-badge,
+[data-theme="light"] .portfolio-tag-category {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .nav-fade {
+  background-image: linear-gradient(0deg, transparent, #f8fafc 70%) !important;
+}
+
+/* Fix invisible 'Learn More' text on hover in light mode */
+[data-theme="light"] .service-card:hover .service-learn-more {
+  color: var(--textColor) !important;
+}
+
+/* =========================================
+   SERVICE ICONS LIGHT THEME OVERRIDES 
+   ========================================= */
+[data-theme="light"] .service-icon-wrapper,
+[data-theme="light"] .drawer-icon-wrapper {
+  background: rgba(37, 99, 235, 0.1) !important;
+  border: 1px solid rgba(37, 99, 235, 0.2) !important;
+  color: var(--accentColor) !important;
+}
+
+[data-theme="light"] .service-card:hover .service-icon-wrapper {
+  background: var(--accentColor) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4) !important;
+}
+
+/* Divider lines & Icons */
+[data-theme="light"] .subtitle-line,
+[data-theme="light"] .drawer-divider,
+[data-theme="light"] .pricing-divider,
+[data-theme="light"] .footer-bottom-divider,
+[data-theme="light"] .check-line {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .theme-toggle-btn,
+[data-theme="light"] .modal-close-btn,
+[data-theme="light"] .drawer-close-btn,
+[data-theme="light"] .success-close-btn,
+[data-theme="light"] .slider-arrow-btn {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .hamburger-btn span {
+  background-color: #0f172a !important;
+}
+
+[data-theme="light"] .step-badge-number {
+  background-color: #f8fafc !important;
+  color: var(--accentColor) !important;
+}
+
+[data-theme="light"] .what-content::before,
+[data-theme="light"] .what-corner::before,
+[data-theme="light"] .what-content::after,
+[data-theme="light"] .what-corner::after,
+[data-theme="light"] .what-arrow::before {
+  border-color: #0f172a !important;
+}
+
+/* Change Logo for Light Theme */
+[data-theme="light"] .navbar-logo .brand-logo-img,
+[data-theme="light"] .footer-logo .brand-logo-img {
+  content: url('/logo.png') !important;
+}
+
+/* Keep loading screen text/marquee original color */
+[data-theme="light"] .loading-screen {
+  --backgroundColor: #03050a !important;
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .loading-screen div,
+[data-theme="light"] .loading-screen span {
+  color: #ffffff !important;
+}
+
+/* =========================================
+   FLOATING SOCIAL ICONS & CURSOR LIGHT THEME 
+   ========================================= */
+[data-theme="light"] .social-icons {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 50px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .social-icons a {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .social-icons a:hover {
+  color: var(--accentColor) !important;
+}
+
+[data-theme="light"] .cursor-main {
+  background-color: rgba(37, 99, 235, 0.15) !important;
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.25) !important;
+  mix-blend-mode: normal !important;
+}
+
+[data-theme="light"] .cursor-icons {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* =========================================
+   CARDS HOVER & SPECIAL EFFECTS (LIGHT THEME) 
+   ========================================= */
+
+/* Universal Card Hover Effects */
+[data-theme="light"] .portfolio-card:hover,
+[data-theme="light"] .pricing-card:hover,
+[data-theme="light"] .service-card:hover,
+[data-theme="light"] .review-card:hover,
+[data-theme="light"] .status-card:hover,
+[data-theme="light"] .process-step-card:hover,
+[data-theme="light"] .faq-item:hover,
+[data-theme="light"] .faq-item.faq-open,
+[data-theme="light"] .illustration-card:hover,
+[data-theme="light"] .benefit-card:hover {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .illustration-card {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Popular Pricing Card Effect */
+[data-theme="light"] .pricing-card.popular-card {
+  background: rgba(37, 99, 235, 0.03) !important;
+  border-color: var(--accentColor) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08), 0 0 25px rgba(37, 99, 235, 0.15) !important;
+}
+
+[data-theme="light"] .pricing-card.popular-card:hover {
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12), 0 0 35px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Background Blurs, Images and Glows */
+[data-theme="light"] .featured-image-glow {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%) !important;
+}
+
+[data-theme="light"] .portfolio-img-wrapper,
+[data-theme="light"] .modal-image-wrapper {
+  background-color: #f1f5f9 !important;
+}
+
+[data-theme="light"] .landing-circle1,
+[data-theme="light"] .landing-circle2 {
+  opacity: 0.3 !important;
+  filter: blur(100px) !important;
+}
+
+/* Specific Borders and Lines */
+[data-theme="light"] .featured-meta-info,
+[data-theme="light"] .portfolio-card-meta {
+  border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Process Badge Inner Glow */
+[data-theme="light"] .process-step-card:hover .step-badge-number {
+  background: var(--accentColor) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.4) !important;
+}
+
+/* Benefit Icons Inner Glow */
+[data-theme="light"] .benefit-icon-wrapper {
+  background: rgba(37, 99, 235, 0.08) !important;
+  border-color: rgba(37, 99, 235, 0.15) !important;
+  color: var(--accentColor) !important;
+}
+
+[data-theme="light"] .benefit-card:hover .benefit-icon-wrapper {
+  background: var(--accentColor) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3) !important;
+}
+
+/* Fix invisible Quote Icon in testimonials */
+[data-theme="light"] .review-quote-icon,
+[data-theme="light"] .feedback-quote-icon {
+  color: rgba(0, 0, 0, 0.05) !important;
 }

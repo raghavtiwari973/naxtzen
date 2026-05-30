@@ -1,83 +1,92 @@
-import { MdArrowOutward, MdCopyright } from "react-icons/md";
+import BrandLogo from "./BrandLogo";
+import { agencyConfig } from "../data/agencyConfig";
+import { 
+  FaEnvelope, 
+  FaPhone, 
+  FaLocationDot 
+} from "react-icons/fa6";
+import { MdCopyright } from "react-icons/md";
 import "./styles/Contact.css";
 
 const Contact = () => {
+  const { brand } = agencyConfig;
+
   return (
-    <div className="contact-section section-container" id="contact">
-      <div className="contact-container">
-        <h3>Contact</h3>
-        <div className="contact-flex">
-          <div className="contact-box">
-            <h4>Connect</h4>
-            <p>
-              <a
-                href="https://www.linkedin.com/in/akashrmalhotra/"
-                target="_blank"
-                rel="noreferrer"
-                data-cursor="disable"
-              >
-                LinkedIn — akashrmalhotra
-              </a>
-            </p>
-            <h4>Education</h4>
-            <p>
-              PGPWE (MBA), Indian Institute of Management, Lucknow — 2021–2023
-            </p>
-            <p>
-              B.Tech Computer Science, Manav Rachna Educational Institutions —
-              2009–2013
+    <footer className="footer-section">
+      <div className="footer-container section-container">
+        
+        <div className="footer-main-grid">
+          {/* Brand Info Col */}
+          <div className="footer-brand-col">
+            <a href="#landingDiv" className="footer-logo" data-cursor="disable">
+              <BrandLogo />
+            </a>
+            <p className="footer-brand-desc">
+              {brand.description}
             </p>
           </div>
-          <div className="contact-box">
-            <h4>Social</h4>
-            <a
-              href="https://github.com/akashrmalhotra"
-              target="_blank"
-              rel="noreferrer"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              GitHub <MdArrowOutward />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/akashrmalhotra/"
-              target="_blank"
-              rel="noreferrer"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              LinkedIn <MdArrowOutward />
-            </a>
-            <a
-              href="https://www.youtube.com/@Leftbraincoder"
-              target="_blank"
-              rel="noreferrer"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              YouTube <MdArrowOutward />
-            </a>
-            <a
-              href="https://www.instagram.com/leftbraincoder/"
-              target="_blank"
-              rel="noreferrer"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Instagram <MdArrowOutward />
-            </a>
+
+          {/* Quick Links Col */}
+          <div className="footer-links-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#landingDiv">Home</a></li>
+              <li><a href="#about">Overview</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#featured">Featured Work</a></li>
+              <li><a href="#work">Showcase Portfolio</a></li>
+              <li><a href="#pricing">Pricing Plans</a></li>
+            </ul>
           </div>
-          <div className="contact-box">
-            <h2>
-              Designed and Developed <br /> by <span>Akash Malhotra</span>
-            </h2>
-            <h5>
-              <MdCopyright /> 2026
-            </h5>
+
+          {/* Services categories Col */}
+          <div className="footer-links-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#services">Student Portfolio</a></li>
+              <li><a href="#services">Professional Portfolio</a></li>
+              <li><a href="#services">Business Website</a></li>
+              <li><a href="#services">Startup Website</a></li>
+              <li><a href="#services">Landing Pages</a></li>
+              <li><a href="#services">Custom Web Apps</a></li>
+            </ul>
+          </div>
+
+          {/* Contact Details Col */}
+          <div className="footer-contact-col">
+            <h4>Contact Info</h4>
+            <ul className="footer-contact-items">
+              <li>
+                <FaEnvelope className="footer-icon" />
+                <a href={`mailto:${brand.contact.email}`}>{brand.contact.email}</a>
+              </li>
+              <li>
+                <FaPhone className="footer-icon" />
+                <a href={`tel:${brand.contact.phone}`}>{brand.contact.phone}</a>
+              </li>
+              <li>
+                <FaLocationDot className="footer-icon" />
+                <span>{brand.contact.address}</span>
+              </li>
+            </ul>
           </div>
         </div>
+
+        <div className="footer-bottom-divider"></div>
+
+        {/* Legal Row */}
+        <div className="footer-bottom-row">
+          <p className="copyright-text">
+            <MdCopyright /> {new Date().getFullYear()} <strong>{brand.name}</strong>. All Rights Reserved.
+          </p>
+          <div className="legal-links">
+            <a href="#about">Privacy Policy</a>
+            <a href="#about">Terms of Service</a>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </footer>
   );
 };
 

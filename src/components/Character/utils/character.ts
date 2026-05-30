@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { DRACOLoader, GLTF, GLTFLoader } from "three-stdlib";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { setCharTimeline, setAllTimeline } from "../../utils/GsapScroll";
 import { decryptFile } from "./decrypt";
 
@@ -53,6 +54,7 @@ const setCharacter = (
             resolve(gltf);
             setCharTimeline(character, camera);
             setAllTimeline();
+            requestAnimationFrame(() => ScrollTrigger.refresh());
             character!.getObjectByName("footR")!.position.y = 3.36;
             character!.getObjectByName("footL")!.position.y = 3.36;
 

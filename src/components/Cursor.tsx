@@ -13,39 +13,53 @@ const Cursor = () => {
       mousePos.x = e.clientX;
       mousePos.y = e.clientY;
     });
-    requestAnimationFrame(function loop() {
+
+    let animationFrameId: number;
+    const loop = () => {
       if (!hover) {
         const delay = 6;
         cursorPos.x += (mousePos.x - cursorPos.x) / delay;
         cursorPos.y += (mousePos.y - cursorPos.y) / delay;
         gsap.to(cursor, { x: cursorPos.x, y: cursorPos.y, duration: 0.1 });
-        // cursor.style.transform = `translate(${cursorPos.x}px, ${cursorPos.y}px)`;
       }
-      requestAnimationFrame(loop);
-    });
-    document.querySelectorAll("[data-cursor]").forEach((item) => {
-      const element = item as HTMLElement;
-      element.addEventListener("mouseover", (e: MouseEvent) => {
-        const target = e.currentTarget as HTMLElement;
-        const rect = target.getBoundingClientRect();
+      animationFrameId = requestAnimationFrame(loop);
+    };
+    loop();
 
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const element = target.closest("[data-cursor]") as HTMLElement;
+      if (element) {
+        const rect = element.getBoundingClientRect();
         if (element.dataset.cursor === "icons") {
           cursor.classList.add("cursor-icons");
-
           gsap.to(cursor, { x: rect.left, y: rect.top, duration: 0.1 });
-          //   cursor.style.transform = `translate(${rect.left}px,${rect.top}px)`;
           cursor.style.setProperty("--cursorH", `${rect.height}px`);
           hover = true;
         }
         if (element.dataset.cursor === "disable") {
           cursor.classList.add("cursor-disable");
         }
-      });
-      element.addEventListener("mouseout", () => {
+      }
+    };
+
+    const handleMouseOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const element = target.closest("[data-cursor]") as HTMLElement;
+      if (element) {
         cursor.classList.remove("cursor-disable", "cursor-icons");
         hover = false;
-      });
-    });
+      }
+    };
+
+    document.addEventListener("mouseover", handleMouseOver);
+    document.addEventListener("mouseout", handleMouseOut);
+
+    return () => {
+      document.removeEventListener("mouseover", handleMouseOver);
+      document.removeEventListener("mouseout", handleMouseOut);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   return <div className="cursor-main" ref={cursorRef}></div>;

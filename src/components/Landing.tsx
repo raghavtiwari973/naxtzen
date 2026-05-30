@@ -1,34 +1,43 @@
-import { PropsWithChildren } from "react";
+import { agencyConfig } from "../data/agencyConfig";
 import "./styles/Landing.css";
 
-const Landing = ({ children }: PropsWithChildren) => {
+const Landing = () => {
   return (
-    <>
-      <div className="landing-section" id="landingDiv">
-        <div className="landing-container">
-          <div className="landing-intro">
-            <h2>Hello! I'm</h2>
-            <h1>
-              AKASH
-              <br />
-              <span>MALHOTRA</span>
-            </h1>
+    <div className="landing-section" id="landingDiv">
+      <div className="landing-container">
+        
+        <div className="landing-media fade-in" data-cursor="disable">
+          <img 
+            src="/images/gif.gif" 
+            alt="Hero Animation" 
+            style={{ width: "100%", maxWidth: "500px", objectFit: "contain", borderRadius: "20px", mixBlendMode: "screen" }}
+          />
+        </div>
+
+        <div className="landing-intro">
+          <div className="agency-badge fade-in">
+            <span className="badge-dot"></span>
+            {agencyConfig.brand.name}
           </div>
-          <div className="landing-info">
-            <h3>Co-Founder &</h3>
-            <h2 className="landing-info-h2">
-              <div className="landing-h2-1">Tech</div>
-              <div className="landing-h2-2">Business</div>
-            </h2>
-            <h2>
-              <div className="landing-h2-info">Business</div>
-              <div className="landing-h2-info-1">Tech</div>
-            </h2>
+
+          <h1 className="fade-in" style={{ marginBottom: 0 }}>Elevate Your</h1>
+          <h1 className="gradient-text fade-in fade-delay-1">Digital Presence.</h1>
+
+          <p className="landing-desc fade-in fade-delay-2">
+            We craft immersive, high-performance web experiences that turn visitors into clients. Launch your premium identity today.
+          </p>
+
+          <div className="landing-ctas fade-in fade-delay-3">
+            <a href="#work" className="glow-btn-primary" data-cursor="disable">
+              View Our Work
+            </a>
+            <a href="#contact" className="glow-btn-secondary" data-cursor="disable">
+              Let's Talk
+            </a>
           </div>
         </div>
-        {children}
       </div>
-    </>
+    </div>
   );
 };
 
