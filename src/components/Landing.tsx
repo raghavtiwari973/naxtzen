@@ -1,4 +1,5 @@
 import { agencyConfig } from "../data/agencyConfig";
+import { Player } from '@lottiefiles/react-lottie-player';
 import "./styles/Landing.css";
 
 const Landing = () => {
@@ -7,10 +8,11 @@ const Landing = () => {
       <div className="landing-container">
         
         <div className="landing-media fade-in" data-cursor="disable">
-          <img 
-            src="/images/gif.gif" 
-            alt="Hero Animation" 
-            style={{ width: "100%", maxWidth: "500px", objectFit: "contain", borderRadius: "20px", mixBlendMode: "screen" }}
+          <Player
+            autoplay
+            loop
+            src="/animat.json"
+            style={{ width: "100%", maxWidth: "500px" }}
           />
         </div>
 

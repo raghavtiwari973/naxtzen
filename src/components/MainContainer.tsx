@@ -9,11 +9,9 @@ import Testimonials from "./Testimonials";
 import Pricing from "./Pricing";
 import FAQ from "./FAQ";
 import ContactForm from "./ContactForm";
-import Contact from "./Contact";
 import Cursor from "./Cursor";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
-import SocialIcons from "./SocialIcons";
 import Work from "./Work";
 import setSplitText from "./utils/splitText";
 import { useLoading } from "../context/LoadingProvider";
@@ -43,7 +41,6 @@ const MainContainer = () => {
     <div className="container-main">
       <Cursor />
       <Navbar />
-      <SocialIcons />
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <div className="container-main">
@@ -61,7 +58,6 @@ const MainContainer = () => {
             <Pricing />
             <FAQ />
             <ContactForm />
-            <Contact />
           </div>
         </div>
       </div>
