@@ -106,7 +106,7 @@ export function setAllTimeline() {
   });
 
   const headerDesc =
-    ".services-header-desc, .benefits-header-desc, .featured-header-desc, .work-header-desc, .process-header-desc, .pricing-header-desc, .faq-header-desc, .about-intro-para";
+    ".services-header-desc, .benefits-header-desc, .featured-header-desc, .process-header-desc, .pricing-header-desc, .faq-header-desc, .about-intro-para";
   gsap.utils.toArray<HTMLElement>(headerDesc).forEach((el) => {
     gsap.fromTo(
       el,
@@ -165,14 +165,6 @@ export function setAllTimeline() {
     y: 64,
     stagger: 0.2,
     start: "top 85%",
-  });
-
-  /* Portfolio */
-  revealOnScroll(".portfolio-controls", ".work-section", { y: 32, stagger: 0 });
-  revealOnScroll(".portfolio-card", ".work-section", {
-    y: 52,
-    stagger: 0.06,
-    start: "top 82%",
   });
 
   /* Process */

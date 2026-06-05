@@ -98,7 +98,6 @@ const Testimonials = () => {
                       <div className="review-client-meta">
                         <div>
                           <h4>{review.name}</h4>
-                          <p>{review.role}, <strong>{review.company}</strong></p>
                         </div>
                       </div>
                     </div>

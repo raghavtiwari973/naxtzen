@@ -34,7 +34,6 @@ const Contact = () => {
               <li><a href="#about">Overview</a></li>
               <li><a href="#services">Services</a></li>
               <li><a href="#featured">Featured Work</a></li>
-              <li><a href="#work">Showcase Portfolio</a></li>
               <li><a href="#pricing">Pricing Plans</a></li>
             </ul>
           </div>

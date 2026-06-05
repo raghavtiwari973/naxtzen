@@ -62,12 +62,13 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Benefits Cards Grid */}
-        <div className="benefits-grid">
+        <div className="benefits-grid" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
           {benefits.map((benefit, idx) => (
             <div 
               key={idx} 
               className="benefit-card glass-panel"
               data-cursor="disable"
+              style={{ flex: "1 1 300px", maxWidth: "350px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}
             >
               <div className="benefit-icon-wrapper">
                 {getIcon(benefit.icon)}

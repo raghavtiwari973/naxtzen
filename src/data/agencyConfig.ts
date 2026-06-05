@@ -25,8 +25,6 @@ export interface Service {
 
 export interface Testimonial {
   name: string;
-  role: string;
-  company: string;
   text: string;
   rating: number;
 }
@@ -69,7 +67,7 @@ export const agencyConfig = {
       email: "nextzee@gmail.com",
       phone: "+91 9993800465",
       whatsapp: "https://wa.me/91 9993800465",
-      address: "xyz",
+      address: "Indore, Madhya Pradesh, India",
       socials: {
         github: "#",
         linkedin: "#",
@@ -135,119 +133,64 @@ export const agencyConfig = {
       icon: "sparkles"
     },
   ] as Service[],
-  portfolio: [
-    {
-      id: "proj-1",
-      title: "IMA Indore",
-      clientName: "Indore Management Association",
-      category: "Corporate Website",
-      description: "Official digital platform for the Indore Management Association featuring events and resources.",
-      longDescription: "A comprehensive corporate portal designed for seamless member onboarding, event registrations, and resource sharing. Built with modern web technologies for maximum performance.",
-      image: "/images/1.png",
-      link: "https://imaindore.vercel.app/",
-      completionDate: "2023-11-20",
-      featured: true,
-      testimonial: {
-        text: "Nextzee delivered an exceptional platform that completely streamlined our membership process!",
-        rating: 5
-      }
-    },
-    {
-      id: "proj-2",
-      title: "Sapcon Instruments",
-      clientName: "Sapcon Instruments",
-      category: "Business Website",
-      description: "A comprehensive digital catalog and corporate platform for Sapcon Instruments.",
-      longDescription: "An industrial corporate portal designed for seamless product discovery, featuring customized interactive catalogs and immediate lead generation tools.",
-      image: "/images/2.png",
-      link: "https://sapconinstruments.vercel.app/",
-      completionDate: "2026-03-15",
-      featured: true,
-      testimonial: {
-        text: "The new digital catalog and smooth page transitions have drastically increased our corporate lead generation.",
-        rating: 4.8
-      }
-    },
-    {
-      id: "proj-3",
-      title: "Priyanka Dubey Portfolio",
-      clientName: "Priyanka Dubey",
-      category: "Professional Portfolio",
-      description: "A modern personal portfolio and professional showcase.",
-      longDescription: "An elegant personal portfolio website designed to showcase professional achievements, skills, and previous work experiences with a clean, modern aesthetic.",
-      image: "/images/3.png",
-      link: "https://priyankadubey.netlify.app/",
-      completionDate: "2024-01-15",
-      featured: true,
-      testimonial: {
-        text: "The portfolio perfectly captures my professional brand and has helped me stand out to recruiters. Highly recommended!",
-        rating: 5
-      }
-    },
-    {
-      id: "proj-4",
-      title: "Raghav Tiwari Portfolio",
-      clientName: "Raghav Tiwari",
-      category: "Developer Portfolio",
-      description: "A high-performance personal portfolio and developer showcase.",
-      longDescription: "A modern developer showcase highlighting projects, skills, and technical capabilities. Features seamless page transitions and a clean, responsive design.",
-      image: "/images/4.png",
-      link: "https://raghavtiwari.netlify.app/",
-      completionDate: "2024-02-10",
-      featured: false
-    },
-    {
-      id: "proj-5",
-      title: "Kuldeep Rajput Portfolio",
-      clientName: "Kuldeep Rajput",
-      category: "Developer Portfolio",
-      description: "A modern, responsive personal portfolio and developer showcase.",
-      longDescription: "A clean and engaging personal portfolio designed to effectively display projects, skills, and contact information with smooth navigation.",
-      image: "/images/5.png",
-      link: "https://kuldeeprajput.netlify.app/",
-      completionDate: "2024-03-01",
-      featured: false
-    },
-    {
-      id: "proj-6",
-      title: "Neeraj Sharma Portfolio",
-      clientName: "Neeraj Sharma",
-      category: "Student Portfolio",
-      description: "A dynamic personal portfolio and developer showcase.",
-      longDescription: "A clean and engaging personal portfolio designed to effectively display projects, skills, and contact information with smooth navigation.",
-      image: "/images/6.png",
-      link: "https://neerajsharma86.netlify.app/",
-      completionDate: "2024-04-10",
-      featured: false
-    }
-
-  ] as Project[],
+  portfolio: [] as Project[],
+  // portfolio: [
+  //   //    {
+  //   //   id: "proj-4",
+  //   //   title: "Raghav Tiwari Portfolio",
+  //   //   clientName: "Raghav Tiwari",
+  //   //   category: "Developer Portfolio",
+  //   //   description: "A high-performance personal portfolio and developer showcase.",
+  //   //   longDescription: "A modern developer showcase highlighting projects, skills, and technical capabilities. Features seamless page transitions and a clean, responsive design.",
+  //   //   image: "/images/4.png",
+  //   //   link: "https://raghavtiwari.netlify.app/",
+  //   //   completionDate: "2024-02-10",
+  //   //   featured: false
+  //   // },
+  //   // {
+  //   //   id: "proj-5",
+  //   //   title: "Kuldeep Rajput Portfolio",
+  //   //   clientName: "Kuldeep Rajput",
+  //   //   category: "Developer Portfolio",
+  //   //   description: "A modern, responsive personal portfolio and developer showcase.",
+  //   //   longDescription: "A clean and engaging personal portfolio designed to effectively display projects, skills, and contact information with smooth navigation.",
+  //   //   image: "/images/5.png",
+  //   //   link: "https://kuldeeprajput.netlify.app/",
+  //   //   completionDate: "2024-03-01",
+  //   //   featured: false
+  //   // },
+  //   // {
+  //   //   id: "proj-6",
+  //   //   title: "Neeraj Sharma Portfolio",
+  //   //   clientName: "Neeraj Sharma",
+  //   //   category: "Student Portfolio",
+  //   //   description: "A dynamic personal portfolio and developer showcase.",
+  //   //   longDescription: "A clean and engaging personal portfolio designed to effectively display projects, skills, and contact information with smooth navigation.",
+  //   //   image: "/images/6.png",
+  //   //   link: "https://neerajsharma86.netlify.app/",
+  //   //   completionDate: "2024-04-10",
+  //   //   featured: false
+  //   // }
+  // 
+  // ] as Project[],
   testimonials: [
     {
-      name: "Siddharth Mehta",
-      role: "Founder & CEO",
-      company: "CallHQ",
+      name: "Raghav Tiwari",
       text: "The team at Nextzee converted our complex requirements into a stunningly beautiful product. The 3D details and smooth interactions have set a new industry benchmark for us.",
       rating: 5
     },
     {
       name: "Anjali Deshmukh",
-      role: "Marketing Director",
-      company: "Broki India",
       text: "Our brand identity has completely transformed. We get constant compliments from our business clients on how premium and professional our new website looks. Highly recommended!",
       rating: 4.8
     },
     {
-      name: "Alex Mercer",
-      role: "Lead Designer",
-      company: "Studio Shape",
+      name: "Kuldeep Rajput",
       text: "Working with them was seamless. They understood my minimalist aesthetic and built a portfolio that acts as a true extensions of my physical designs. Fast, clean, and beautiful.",
       rating: 5
     },
     {
-      name: "Rahul Khanna",
-      role: "Freelance Architect",
-      company: "Khanna Associates",
+      name: "Neeraj Sharma",
       text: "I was struggling to get clients online. Since deploying my new portfolio designed by Nextzee, I have closed three high-ticket consulting contracts in less than a month!",
       rating: 4.7
     }
