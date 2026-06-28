@@ -10,7 +10,7 @@ const About = () => {
           <div className="about-content-block">
             <div className="section-subtitle">
               <span className="subtitle-line"></span>
-              COMPANY OVERVIEW
+              {/* COMPANY OVERVIEW */}
             </div>
             
             <h2 className="section-title">
@@ -54,19 +54,17 @@ const About = () => {
                 <span className="card-tag">Premium UI</span>
                 <h3>High Fidelity</h3>
                 <p>Curated color systems, custom typography, and stunning dark modes.</p>
-                <div className="card-bar primary-bar"></div>
               </div>
               
               <div className="illustration-card card-bottom glass-panel">
                 <span className="card-tag">Speed & SEO</span>
                 <h3>Optimized Core</h3>
                 <p>Lightning fast loading speeds and search crawler friendly structures.</p>
-                <div className="card-bar secondary-bar"></div>
               </div>
               
               <div className="illustration-badge glass-panel">
                 <span className="badge-big">100%</span>
-                <span className="badge-lbl">Responsive Design</span>
+                <span className="badge-lbl" style={{ color: 'var(--textColor)' }}>Responsive Design</span>
               </div>
             </div>
           </div>

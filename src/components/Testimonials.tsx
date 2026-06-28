@@ -42,7 +42,7 @@ const Testimonials = () => {
           <div className="reviews-summary-card glass-panel" data-cursor="disable">
             <div className="section-subtitle">
               <span className="subtitle-line"></span>
-              REVIEWS
+              {/* REVIEWS */}
             </div>
             
             <h2 className="section-title">

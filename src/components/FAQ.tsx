@@ -18,7 +18,7 @@ const FAQ = () => {
         <div className="faq-header-block">
           <div className="section-subtitle">
             <span className="subtitle-line"></span>
-            COMMON QUESTIONS
+            {/* COMMON QUESTIONS */}
           </div>
           <h2 className="section-title">
             Frequently Asked <br />

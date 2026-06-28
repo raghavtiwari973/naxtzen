@@ -72,7 +72,6 @@ const Stats = () => {
               <Counter endValue={counters.delivered} suffix="+" />
             </div>
             <p className="counter-label">Projects Delivered</p>
-            <div className="counter-glow-line c-teal"></div>
           </div>
 
           <div className="counter-card glass-panel" data-cursor="disable">
@@ -80,7 +79,6 @@ const Stats = () => {
               <Counter endValue={counters.happyClients} suffix="+" />
             </div>
             <p className="counter-label">Happy Clients</p>
-            <div className="counter-glow-line c-indigo"></div>
           </div>
 
           <div className="counter-card glass-panel" data-cursor="disable">
@@ -88,7 +86,6 @@ const Stats = () => {
               <Counter endValue={counters.completedProjects} suffix="+" />
             </div>
             <p className="counter-label">Projects Completed</p>
-            <div className="counter-glow-line c-purple"></div>
           </div>
 
           <div className="counter-card glass-panel" data-cursor="disable">
@@ -96,7 +93,6 @@ const Stats = () => {
               <Counter endValue={counters.yearsOfExperience} suffix="+" />
             </div>
             <p className="counter-label">Years of Experience</p>
-            <div className="counter-glow-line c-pink"></div>
           </div>
         </div>
 

@@ -3,7 +3,6 @@ import About from "./About";
 import Stats from "./Stats";
 import Services from "./Services";
 import WhyChooseUs from "./WhyChooseUs";
-import FeaturedProjects from "./FeaturedProjects";
 import Process from "./Process";
 import Testimonials from "./Testimonials";
 import Pricing from "./Pricing";
@@ -12,29 +11,12 @@ import ContactForm from "./ContactForm";
 import Cursor from "./Cursor";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
-import Work from "./Work";
-import setSplitText from "./utils/splitText";
-import { useLoading } from "../context/LoadingProvider";
 
 const MainContainer = () => {
-  const { setLoading } = useLoading();
-
   useEffect(() => {
-    import("./Loading").then(({ setProgress }) => {
-      const progress = setProgress(setLoading);
-      progress.loaded();
+    import("./utils/initialFX").then((module) => {
+      module.initialFX?.();
     });
-  }, [setLoading]);
-
-  useEffect(() => {
-    const resizeHandler = () => {
-      setSplitText();
-    };
-    resizeHandler();
-    window.addEventListener("resize", resizeHandler);
-    return () => {
-      window.removeEventListener("resize", resizeHandler);
-    };
   }, []);
 
   return (
@@ -50,9 +32,6 @@ const MainContainer = () => {
             <Stats />
             <Services />
             <WhyChooseUs />
-            <FeaturedProjects />
-            <Work />
-
             <Process />
             <Testimonials />
             <Pricing />

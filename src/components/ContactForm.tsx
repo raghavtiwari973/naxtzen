@@ -114,7 +114,7 @@ const ContactForm = () => {
           <div className="contact-info-panel glass-panel" data-cursor="disable">
             <div className="section-subtitle">
               <span className="subtitle-line"></span>
-              GET IN TOUCH
+              {/* GET IN TOUCH */}
             </div>
             
             <h2 className="section-title">

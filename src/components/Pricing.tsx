@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { agencyConfig, PricingPlan } from "../data/agencyConfig";
 import { FaCircleCheck, FaStar, FaXmark, FaArrowRight } from "react-icons/fa6";
+import { smoother } from "./Navbar";
 import "./styles/Pricing.css";
 
 const Pricing = () => {
@@ -26,6 +27,37 @@ const Pricing = () => {
     return "RECOMMENDED";
   };
 
+  const scrollToContact = () => {
+    if (window.innerWidth > 1024 && smoother) {
+      smoother.scrollTo("#contact", true, "top top");
+      return;
+    }
+    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleGetStarted = (plan: PricingPlan, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    window.dispatchEvent(
+      new CustomEvent("prefillContact", {
+        detail: `Hi, I am interested in the ${plan.name} (${plan.price}). Please share more details!`,
+      })
+    );
+
+    setSelectedPlan(null);
+
+    requestAnimationFrame(() => {
+      scrollToContact();
+    });
+  };
+
+  const openPlanDetails = (plan: PricingPlan, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedPlan(plan);
+  };
+
   return (
     <div className="pricing-section" id="pricing">
       <div className="pricing-container section-container">
@@ -33,7 +65,7 @@ const Pricing = () => {
         <div className="pricing-header-block">
           <div className="section-subtitle">
             <span className="subtitle-line"></span>
-            PRICING PLANS
+            {/* PRICING PLANS */}
           </div>
           <h2 className="section-title">
             Transparent Pricing <br />
@@ -76,8 +108,9 @@ const Pricing = () => {
 
               <div className="pricing-card-footer" style={{ marginTop: "auto" }}>
                 <button 
+                  type="button"
                   className={`pricing-cta-btn ${plan.isPopular ? "glow-btn-primary" : "glow-btn-secondary"}`}
-                  onClick={() => setSelectedPlan(plan)}
+                  onClick={(e) => openPlanDetails(plan, e)}
                   style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center", gap: "8px", border: "none", cursor: "pointer", padding: "12px 24px", borderRadius: "30px", fontWeight: 600, fontSize: "16px" }}
                 >
                   View Details <FaArrowRight />
@@ -121,7 +154,9 @@ const Pricing = () => {
               transform: selectedPlan ? "translateY(0)" : "translateY(20px)",
               transition: "transform 0.3s ease",
               textAlign: "left",
-              borderTop: selectedPlan ? `4px solid ${getPlanTheme(selectedPlan.name)}` : "none"
+              border: selectedPlan ? `1px solid ${getPlanTheme(selectedPlan.name)}` : "1px solid rgba(255, 255, 255, 0.1)",
+              borderRadius: "16px",
+              background: "rgba(20, 23, 33, 0.7)"
             }}
           >
             <button 
@@ -168,21 +203,14 @@ const Pricing = () => {
                 </ul>
 
                 <div className="pricing-card-footer" style={{ marginTop: "20px", padding: 0 }}>
-                  <a 
-                    href="#contact" 
+                  <button
+                    type="button"
                     className={`pricing-cta-btn ${selectedPlan.isPopular ? "glow-btn-primary" : "glow-btn-secondary"}`}
-                    style={{ width: "100%", display: "block", textAlign: "center", padding: "12px 24px", borderRadius: "30px", fontWeight: 600, textDecoration: "none", boxSizing: "border-box" }}
-                    onClick={() => {
-                      setSelectedPlan(null);
-                      window.dispatchEvent(
-                        new CustomEvent("prefillContact", {
-                          detail: `Hi, I am interested in the ${selectedPlan.name} (${selectedPlan.price}). Please share more details!`,
-                        })
-                      );
-                    }}
+                    style={{ width: "100%", display: "block", textAlign: "center", padding: "12px 24px", borderRadius: "30px", fontWeight: 600, boxSizing: "border-box", border: "none", cursor: "pointer", fontSize: "16px" }}
+                    onClick={(e) => handleGetStarted(selectedPlan, e)}
                   >
                     {selectedPlan.ctaText}
-                  </a>
+                  </button>
                   
                   {selectedPlan.note && (
                     <p className="plan-enterprise-note" style={{ marginTop: "10px", fontSize: "0.8rem", opacity: 0.7, textAlign: "center", lineHeight: 1.3 }}>

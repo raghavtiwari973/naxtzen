@@ -7,11 +7,9 @@ const Process = () => {
   return (
     <div className="process-section" id="process">
       <div className="process-container section-container">
-        
         <div className="process-header-block">
           <div className="section-subtitle">
             <span className="subtitle-line"></span>
-            OUR WORKFLOW
           </div>
           <h2 className="section-title">
             The Complete 7-Step <br />
@@ -44,7 +42,6 @@ const Process = () => {
             ))}
           </div>
         </div>
-
       </div>
     </div>
   );

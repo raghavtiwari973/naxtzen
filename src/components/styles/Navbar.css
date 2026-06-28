@@ -372,17 +372,6 @@
   content: url('/logo.png') !important;
 }
 
-/* Keep loading screen text/marquee original color */
-[data-theme="light"] .loading-screen {
-  --backgroundColor: #03050a !important;
-  color: #ffffff !important;
-}
-
-[data-theme="light"] .loading-screen div,
-[data-theme="light"] .loading-screen span {
-  color: #ffffff !important;
-}
-
 /* =========================================
    FLOATING SOCIAL ICONS & CURSOR LIGHT THEME 
    ========================================= */

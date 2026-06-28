@@ -1,16 +1,15 @@
 import { lazy, Suspense } from "react";
 import "./App.css";
-import { LoadingProvider } from "./context/LoadingProvider";
 
 const MainContainer = lazy(() => import("./components/MainContainer"));
 
 const App = () => {
   return (
-    <LoadingProvider>
+    <main className="main-body">
       <Suspense>
         <MainContainer />
       </Suspense>
-    </LoadingProvider>
+    </main>
   );
 };
 

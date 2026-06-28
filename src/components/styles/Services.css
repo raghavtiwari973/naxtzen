@@ -121,19 +121,22 @@
   color: var(--accentColor);
 }
 
-/* Slide Drawer Styles */
+/* Centered Modal Styles */
 .services-drawer-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(5, 8, 16, 0.8);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(5, 8, 16, 0.85);
   backdrop-filter: blur(8px);
-  z-index: 10000;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s ease;
 }
 
 .services-drawer-overlay.active {
@@ -142,31 +145,28 @@
 }
 
 .services-drawer {
-  position: absolute;
-  top: 0;
-  right: -100%;
-  width: 100%;
-  max-width: 500px;
-  height: 100%;
-  z-index: 10001;
-  border-radius: 0 !important;
-  border-top: none !important;
-  border-bottom: none !important;
-  border-right: none !important;
-  padding: 50px 40px;
-  box-sizing: border-box;
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  max-height: 85vh;
   overflow-y: auto;
-  transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding: 3rem 3.5rem;
+  box-sizing: border-box;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border-radius: 24px;
 }
 
 @media screen and (max-width: 500px) {
   .services-drawer {
-    padding: 40px 24px;
+    padding: 1.5rem 1.25rem;
   }
 }
 
 .services-drawer-overlay.active .services-drawer {
-  right: 0;
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .drawer-close-btn {
@@ -198,7 +198,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 30px;
+  margin-top: 0;
+  text-align: left;
 }
 
 .drawer-icon-header {

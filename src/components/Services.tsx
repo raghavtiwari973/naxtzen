@@ -13,6 +13,7 @@ import {
   FaArrowRight
 } from "react-icons/fa6";
 import "./styles/Services.css";
+import { smoother } from "./Navbar";
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
@@ -38,6 +39,14 @@ const Services = () => {
     }
   };
 
+  const scrollToContact = () => {
+    if (window.innerWidth > 1024 && smoother) {
+      smoother.scrollTo("#contact", true, "top top");
+      return;
+    }
+    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="services-section" id="services">
       <div className="services-container section-container">
@@ -45,7 +54,7 @@ const Services = () => {
         <div className="services-header-block">
           <div className="section-subtitle">
             <span className="subtitle-line"></span>
-            OUR SERVICES
+            {/* OUR SERVICES */}
           </div>
           <h2 className="section-title">
             Tailored Solutions For <br />
@@ -80,18 +89,25 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Immersive Slide-out Drawer */}
-        {createPortal(<div className={`services-drawer-overlay ${selectedService ? "active" : ""}`} onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              setSelectedService(null);
-            }
-          }}>
-          <div className={`services-drawer glass-panel`}>
-            <button className="drawer-close-btn" onClick={() => setSelectedService(null)} aria-label="Close details">
-              <FaXmark />
-            </button>
-            
-            {selectedService && (
+        {/* Service Details Modal */}
+        {createPortal(
+          <div
+            className={`services-drawer-overlay ${selectedService ? "active" : ""}`}
+            onClick={() => setSelectedService(null)}
+          >
+            <div
+              className="services-drawer glass-panel"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="drawer-close-btn"
+                onClick={() => setSelectedService(null)}
+                aria-label="Close details"
+              >
+                <FaXmark />
+              </button>
+
+              {selectedService && (
               <div className="drawer-content">
                 <div className="drawer-icon-header">
                   <div className="drawer-icon-wrapper">
@@ -126,9 +142,11 @@ const Services = () => {
                   Discuss This Project
                 </a>
               </div>
-            )}
-          </div>
-        </div>, document.body)}
+              )}
+            </div>
+          </div>,
+          document.body
+        )}
 
       </div>
     </div>

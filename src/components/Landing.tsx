@@ -1,5 +1,6 @@
 import { agencyConfig } from "../data/agencyConfig";
 import { Player } from '@lottiefiles/react-lottie-player';
+import { FaWhatsapp } from "react-icons/fa6";
 import "./styles/Landing.css";
 
 const Landing = () => {
@@ -30,8 +31,14 @@ const Landing = () => {
           </p>
 
           <div className="landing-ctas fade-in fade-delay-3">
-            <a href="#work" className="glow-btn-primary" data-cursor="disable">
-              View Our Work
+            <a 
+              href={agencyConfig.brand.contact.whatsapp} 
+              className="glow-btn-primary" 
+              data-cursor="disable"
+              target="_blank"
+              rel="noreferrer"
+            >
+              WhatsApp <FaWhatsapp style={{ marginLeft: '8px' }}/>
             </a>
             <a href="#contact" className="glow-btn-secondary" data-cursor="disable">
               Let's Talk

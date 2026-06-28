@@ -66,7 +66,7 @@ export const agencyConfig = {
     contact: {
       email: "nextzee@gmail.com",
       phone: "+91 9993800465",
-      whatsapp: "https://wa.me/91 9993800465",
+      whatsapp: "https://wa.me/919993800465",
       address: "Indore, Madhya Pradesh, India",
       socials: {
         github: "#",

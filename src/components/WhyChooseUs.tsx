@@ -44,13 +44,13 @@ const WhyChooseUs = () => {
   };
 
   return (
-    <div className="benefits-section">
+    <div className="benefits-section" id="benefits">
       <div className="benefits-container section-container">
         
         <div className="benefits-header-block">
           <div className="section-subtitle">
             <span className="subtitle-line"></span>
-            BENEFITS
+            {/* BENEFITS */}
           </div>
           <h2 className="section-title">
             Why Successful Clients <br />

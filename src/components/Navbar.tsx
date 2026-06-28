@@ -39,7 +39,7 @@ const Navbar = () => {
     });
 
     smoother.scrollTop(0);
-    smoother.paused(true);
+    smoother.paused(false);
 
     const handleLinkClick = (e: Event) => {
       const target = e.target as HTMLElement;
@@ -72,6 +72,26 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const showAnim = gsap.from('.header', { 
+      yPercent: -130,
+      paused: true,
+      duration: 0.2
+    }).progress(1);
+
+    ScrollTrigger.create({
+      start: "top top",
+      end: 99999,
+      onUpdate: (self) => {
+        if (self.direction === -1) {
+          showAnim.play();
+        } else {
+          showAnim.reverse();
+        }
+      }
+    });
+  }, []);
+
   return (
     <>
       <div className="header glass-panel">
@@ -98,13 +118,8 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a data-href="#featured" href="#featured">
+            <a data-href="#benefits" href="#benefits">
               <HoverLinks text="FEATURED" />
-            </a>
-          </li>
-          <li>
-            <a data-href="#work" href="#work">
-              <HoverLinks text="PORTFOLIO" />
             </a>
           </li>
           <li>
@@ -177,13 +192,8 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a data-href="#featured" href="#featured" onClick={() => setMobileMenuOpen(false)}>
+            <a data-href="#benefits" href="#benefits" onClick={() => setMobileMenuOpen(false)}>
               FEATURED
-            </a>
-          </li>
-          <li>
-            <a data-href="#work" href="#work" onClick={() => setMobileMenuOpen(false)}>
-              PORTFOLIO
             </a>
           </li>
           <li>
