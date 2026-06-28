@@ -13,7 +13,6 @@ import {
   FaArrowRight
 } from "react-icons/fa6";
 import "./styles/Services.css";
-import { smoother } from "./Navbar";
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
