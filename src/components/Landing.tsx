@@ -13,7 +13,7 @@ const Landing = () => {
             autoplay
             loop
             src="/animat.json"
-            style={{ width: "100%", maxWidth: "500px" }}
+            style={{ width: "100%", maxWidth: "380px" }}
           />
         </div>
 
