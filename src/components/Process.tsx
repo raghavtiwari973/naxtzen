@@ -16,7 +16,7 @@ const Process = () => {
             <span className="gradient-text">Development Process</span>
           </h2>
           <p className="process-header-desc">
-            We follow a rigorous, high-speed, and structured development lifecycle to deliver flawless code quality and pixel-perfect design results.
+            We follow a rigorous, high-speed and structured development lifecycle to deliver flawless code quality and pixel-perfect design results.
           </p>
         </div>
 

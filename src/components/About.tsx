@@ -19,7 +19,7 @@ const About = () => {
             </h2>
             
             <p className="about-intro-para">
-              At <strong>{agencyConfig.brand.name}</strong>, we are a passionate team of developers, designers, and digital strategists. We specialize in building custom, high-speed, and conversion-focused web solutions.
+              At <strong>{agencyConfig.brand.name}</strong>, we are a passionate team of developers, designers and digital strategists. We specialize in building custom, high-speed and conversion-focused web solutions.
             </p>
             
             <div className="about-features-list">
@@ -29,7 +29,7 @@ const About = () => {
                 </div>
                 <div>
                   <h4>Our Mission</h4>
-                  <p>To empower professionals, startups, and enterprises with premium, state-of-the-art web products that build instant credibility and turn visitors into active clients.</p>
+                  <p>To empower professionals, startups and enterprises with premium, state-of-the-art web products that build instant credibility and turn visitors into active clients.</p>
                 </div>
               </div>
               
@@ -39,7 +39,7 @@ const About = () => {
                 </div>
                 <div>
                   <h4>Our Method</h4>
-                  <p>Combining high-fidelity responsive layouts, search engine optimization (SEO), and ultra-fast React delivery to ensure maximum visual impact and smooth performance.</p>
+                  <p>Combining high-fidelity responsive layouts, search engine optimization (SEO) and ultra-fast React delivery to ensure maximum visual impact and smooth performance.</p>
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@ const About = () => {
               <div className="illustration-card card-top glass-panel">
                 <span className="card-tag">Premium UI</span>
                 <h3>High Fidelity</h3>
-                <p>Curated color systems, custom typography, and stunning dark modes.</p>
+                <p>Curated color systems, custom typography and stunning dark modes.</p>
               </div>
               
               <div className="illustration-card card-bottom glass-panel">

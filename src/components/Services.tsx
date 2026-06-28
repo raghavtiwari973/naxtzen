@@ -52,7 +52,7 @@ const Services = () => {
             <span className="gradient-text">Every Digital Need</span>
           </h2>
           <p className="services-header-desc">
-            We craft pixel-perfect, highly responsive, and blazing fast websites specifically tailored to attract recruiters, clients, and investors.
+            We craft pixel-perfect, highly responsive and blazing fast websites specifically tailored to attract recruiters, clients and investors.
           </p>
         </div>
 

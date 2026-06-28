@@ -24,7 +24,7 @@ const Landing = () => {
           </div>
 
           <h1 className="fade-in" style={{ marginBottom: 0 }}>Elevate Your</h1>
-          <h1 className="gradient-text fade-in fade-delay-1">Digital Presence.</h1>
+          <h1 className="gradient-text fade-in fade-delay-1">Digital Presence</h1>
 
           <p className="landing-desc fade-in fade-delay-2">
             We craft immersive, high-performance web experiences that turn visitors into clients. Launch your premium identity today.

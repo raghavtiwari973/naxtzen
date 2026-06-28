@@ -25,7 +25,7 @@ const FAQ = () => {
             <span className="gradient-text">Questions</span>
           </h2>
           <p className="faq-header-desc">
-            Got questions about how we design, build, host, and hand over our custom portfolio sites? Here are some quick answers.
+            Got questions about how we design, build, host and hand over our custom portfolio sites? Here are some quick answers.
           </p>
         </div>
 

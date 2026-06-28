@@ -62,7 +62,7 @@ export const agencyConfig = {
     logoImage: "/logo-b.png",
     logoText: "NEXTZEE",
     slogan: "Building Professional Portfolios That Get You Noticed",
-    description: "We are a premium agency specializing in crafting high-impact portfolios and responsive web applications for individuals, freelancers, and businesses.",
+    description: "We are a premium agency specializing in crafting high-impact portfolios and responsive web applications for individuals, freelancers and businesses.",
     contact: {
       email: "nextzee@gmail.com",
       phone: "+91 9993800465",
@@ -94,42 +94,42 @@ export const agencyConfig = {
       id: "student",
       title: "Student Portfolio",
       description: "Professional portfolio websites for students and freshers to kickstart careers.",
-      longDescription: "Stand out in front of recruiters with a responsive, modern digital CV that showcases your university projects, internships, skill badges, and extracurricular accomplishments. Includes fully working contact forms and downloadable resume integration.",
+      longDescription: "Stand out in front of recruiters with a responsive, modern digital CV that showcases your university projects, internships, skill badges and extracurricular accomplishments. Includes fully working contact forms and downloadable resume integration.",
       icon: "graduation"
     },
     {
       id: "professional",
       title: "Professional Portfolio",
-      description: "Custom portfolios for developers, designers, freelancers, and consultants.",
-      longDescription: "A sleek, highly customized portfolio that highlights your commercial projects, tech stacks, client reviews, and direct booking integrations. Perfect for securing high-paying freelance gigs or top-tier full-time offers.",
+      description: "Custom portfolios for developers, designers, freelancers and consultants.",
+      longDescription: "A sleek, highly customized portfolio that highlights your commercial projects, tech stacks, client reviews and direct booking integrations. Perfect for securing high-paying freelance gigs or top-tier full-time offers.",
       icon: "briefcase"
     },
     {
       id: "business",
       title: "Business Website",
       description: "Enterprise-grade professional websites for small & mid-sized businesses.",
-      longDescription: "A solid online foundation for your corporate identity. Fully loaded with customized landing interfaces, team directory layouts, detailed service catalogues, booking integrations, and localized custom branding.",
+      longDescription: "A solid online foundation for your corporate identity. Fully loaded with customized landing interfaces, team directory layouts, detailed service catalogues, booking integrations and localized custom branding.",
       icon: "building"
     },
     {
       id: "startup",
       title: "Startup Website",
       description: "Modern, high-speed, and conversion-optimized websites for startups.",
-      longDescription: "Accelerate your launch with ultra-fast page speeds, eye-catching landing designs, pitch deck downloads, lead generation capture pages, and direct connection with your waitlist systems.",
+      longDescription: "Accelerate your launch with ultra-fast page speeds, eye-catching landing designs, pitch deck downloads, lead generation capture pages and direct connection with your waitlist systems.",
       icon: "rocket"
     },
     {
       id: "landing",
       title: "Landing Pages",
       description: "High-converting product landing pages built to maximize ROI.",
-      longDescription: "One-page, hyper-focused landing grids designed specifically to turn ad traffic into immediate paying customers. Packed with premium CTAs, responsive sections, and embedded customer reviews.",
+      longDescription: "One-page, hyper-focused landing grids designed specifically to turn ad traffic into immediate paying customers. Packed with premium CTAs, responsive sections and embedded customer reviews.",
       icon: "layout"
     },
     {
       id: "redesign",
       title: "Website Redesign",
       description: "Modern redesign of existing websites for improved performance and UI/UX.",
-      longDescription: "Breathe new life into your outdated website. We rebuild older layouts using high-speed React frameworks, premium custom color palettes, sleek animations, and highly optimized code structures.",
+      longDescription: "Breathe new life into your outdated website. We rebuild older layouts using high-speed React frameworks, premium custom color palettes, sleek animations and highly optimized code structures.",
       icon: "sparkles"
     },
   ] as Service[],
@@ -175,7 +175,7 @@ export const agencyConfig = {
   // ] as Project[],
   testimonials: [
     {
-      name: "Raghav Tiwari",
+      name: "Anshul Upadhyay",
       text: "The team at Nextzee converted our complex requirements into a stunningly beautiful product. The 3D details and smooth interactions have set a new industry benchmark for us.",
       rating: 5
     },
@@ -185,12 +185,12 @@ export const agencyConfig = {
       rating: 4.8
     },
     {
-      name: "Kuldeep Rajput",
-      text: "Working with them was seamless. They understood my minimalist aesthetic and built a portfolio that acts as a true extensions of my physical designs. Fast, clean, and beautiful.",
+      name: "Sumit Kumar",
+      text: "Working with them was seamless. They understood my minimalist aesthetic and built a portfolio that acts as a true extensions of my physical designs. Fast, clean and beautiful.",
       rating: 5
     },
     {
-      name: "Neeraj Sharma",
+      name: "Vini Acharya",
       text: "I was struggling to get clients online. Since deploying my new portfolio designed by Nextzee, I have closed three high-ticket consulting contracts in less than a month!",
       rating: 4.7
     }
@@ -315,27 +315,27 @@ export const agencyConfig = {
     {
       step: "01",
       title: "Requirement Discussion",
-      description: "We host an introductory call to map out your core goals, professional background, target audience, and aesthetic choices."
+      description: "We host an introductory call to map out your core goals, professional background, target audience and aesthetic choices."
     },
     {
       step: "02",
       title: "Planning",
-      description: "Our leads structure the sitemap architecture, content outlines, feature scopes, and wireframes to finalize the layout roadmap."
+      description: "Our leads structure the sitemap architecture, content outlines, feature scopes and wireframes to finalize the layout roadmap."
     },
     {
       step: "03",
       title: "Design",
-      description: "We craft custom layout mocks featuring premium typography systems, beautiful dark and glassmorphism themes, and assets placeholders."
+      description: "We craft custom layout mocks featuring premium typography systems, beautiful dark and glassmorphism themes and assets placeholders."
     },
     {
       step: "04",
       title: "Development",
-      description: "Our engineers build the site using modern high-performance frameworks (React, Vite, CSS variables, and GSAP) with zero code bloating."
+      description: "Our engineers build the site using modern high-performance frameworks (React, Vite, CSS variables and GSAP) with zero code bloating."
     },
     {
       step: "05",
       title: "Testing",
-      description: "We run rigid performance metrics audits, screen-size responsive testing, cross-browser compatibility checks, and form validation verifications."
+      description: "We run rigid performance metrics audits, screen-size responsive testing, cross-browser compatibility checks and form validation verifications."
     },
     {
       step: "06",
@@ -345,7 +345,7 @@ export const agencyConfig = {
     {
       step: "07",
       title: "Client Approval",
-      description: "We host a final walk-through, hand over all source directories and configurations, and secure your final launch approval!"
+      description: "We host a final walk-through, hand over all source directories and configurations and secure your final launch approval!"
     }
   ] as ProcessStep[],
   faqs: [
@@ -359,11 +359,11 @@ export const agencyConfig = {
     },
     {
       question: "Do you provide hosting and domain support?",
-      answer: "Yes! We assist in deploying your website to fast, secure, and modern hosting networks (like Vercel or Netlify) which are 100% free for personal portfolios. We also guide you through connecting your custom domain name."
+      answer: "Yes! We assist in deploying your website to fast, secure and modern hosting networks (like Vercel or Netlify) which are 100% free for personal portfolios. We also guide you through connecting your custom domain name."
     },
     {
       question: "Will my website be mobile friendly and responsive?",
-      answer: "Yes, 100%. All our projects follow a rigid Mobile-First strategy. Your website will render beautifully and operate smoothly across all smartphones, tablets, laptops, and large desktop screens."
+      answer: "Yes, 100%. All our projects follow a rigid Mobile-First strategy. Your website will render beautifully and operate smoothly across all smartphones, tablets, laptops and large desktop screens."
     },
     {
       question: "Can I request custom features in the future?",
