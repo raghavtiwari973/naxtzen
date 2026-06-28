@@ -39,14 +39,6 @@ const Services = () => {
     }
   };
 
-  const scrollToContact = () => {
-    if (window.innerWidth > 1024 && smoother) {
-      smoother.scrollTo("#contact", true, "top top");
-      return;
-    }
-    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div className="services-section" id="services">
       <div className="services-container section-container">
