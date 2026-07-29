@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
+import { useForm, ValidationError } from "@formspree/react";
 import { agencyConfig } from "../data/agencyConfig";
 import { 
-  FaPhone, 
   FaEnvelope, 
   FaWhatsapp, 
   FaLocationDot,
@@ -10,107 +10,30 @@ import {
   FaXmark
 } from "react-icons/fa6";
 import "./styles/ContactForm.css";
-
-interface FormFields {
-  name: string;
-  mobile: string;
-  email: string;
-  message: string;
-}
-
-interface FormErrors {
-  name?: string;
-  mobile?: string;
-  email?: string;
-  message?: string;
-}
+import { FaPhone } from "react-icons/fa";
 
 const ContactForm = () => {
+  // "@formspree/react";
   const { contact } = agencyConfig.brand;
-  
-  const [fields, setFields] = useState<FormFields>({
-    name: "",
-    mobile: "",
-    email: "",
-    message: ""
-  });
-  
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
+  const [state, handleSubmit] = useForm("mjgnzekb");
 
   useEffect(() => {
     const handlePrefill = (e: Event) => {
       const customEvent = e as CustomEvent;
-      setFields((prev) => ({ ...prev, message: customEvent.detail }));
-      setErrors((prev) => ({ ...prev, message: undefined }));
+      const messageTextarea = document.getElementById("form-msg") as HTMLTextAreaElement;
+      if (messageTextarea) {
+        messageTextarea.value = customEvent.detail;
+      }
     };
     window.addEventListener("prefillContact", handlePrefill);
     return () => window.removeEventListener("prefillContact", handlePrefill);
   }, []);
-
-  const validate = (): boolean => {
-    let tempErrors: FormErrors = {};
-    let isValid = true;
-
-    if (!fields.name.trim()) {
-      tempErrors.name = "Full Name is required.";
-      isValid = false;
-    }
-
-    if (!fields.mobile.trim()) {
-      tempErrors.mobile = "Mobile Number is required.";
-      isValid = false;
-    } else if (!/^\+?[0-9\s-]{10,15}$/.test(fields.mobile.trim())) {
-      tempErrors.mobile = "Please enter a valid mobile number.";
-      isValid = false;
-    }
-
-    if (!fields.email.trim()) {
-      tempErrors.email = "Email Address is required.";
-      isValid = false;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email.trim())) {
-      tempErrors.email = "Please enter a valid email address.";
-      isValid = false;
-    }
-
-    if (!fields.message.trim()) {
-      tempErrors.message = "Message is required.";
-      isValid = false;
-    }
-
-    setErrors(tempErrors);
-    return isValid;
-  };
-
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFields({ ...fields, [name]: value });
-    if (errors[name as keyof FormErrors]) {
-      setErrors({ ...errors, [name]: undefined });
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    setIsSubmitting(true);
-    
-    // Simulate API submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setShowSuccessOverlay(true);
-      setFields({ name: "", mobile: "", email: "", message: "" });
-    }, 1500);
-  };
 
   return (
     <div className="contact-form-section" id="contact">
       <div className="contact-form-container section-container">
         
         <div className="contact-form-grid">
-          {/* Sidebar Information Panel */}
           <div className="contact-info-panel glass-panel" data-cursor="disable">
             <div className="section-subtitle">
               <span className="subtitle-line"></span>
@@ -171,21 +94,18 @@ const ContactForm = () => {
             </div>
           </div>
 
-          {/* Contact Input Form block */}
           <div className="contact-inputs-block glass-panel" data-cursor="disable">
             <form onSubmit={handleSubmit} noValidate>
               <div className="form-group">
                 <label htmlFor="form-name">Full Name</label>
                 <input 
                   type="text" 
-                  id="form-name" 
-                  name="name" 
-                  value={fields.name} 
-                  onChange={handleInput} 
-                  className={errors.name ? "input-err" : ""}
+                  id="form-name"
+                  name="name"
                   placeholder="Name"
+                  required
                 />
-                {errors.name && <span className="err-msg">{errors.name}</span>}
+                <ValidationError prefix="Name" field="name" errors={state.errors} className="err-msg" />
               </div>
 
               <div className="form-group-row">
@@ -194,13 +114,11 @@ const ContactForm = () => {
                   <input 
                     type="tel" 
                     id="form-mobile" 
-                    name="mobile" 
-                    value={fields.mobile} 
-                    onChange={handleInput} 
-                    className={errors.mobile ? "input-err" : ""}
+                    name="mobile"
                     placeholder="Number"
+                    required
                   />
-                  {errors.mobile && <span className="err-msg">{errors.mobile}</span>}
+                  <ValidationError prefix="Mobile" field="mobile" errors={state.errors} className="err-msg" />
                 </div>
 
                 <div className="form-group">
@@ -209,12 +127,10 @@ const ContactForm = () => {
                     type="email" 
                     id="form-email" 
                     name="email" 
-                    value={fields.email} 
-                    onChange={handleInput} 
-                    className={errors.email ? "input-err" : ""}
                     placeholder="xyz@gmail.com"
+                    required
                   />
-                  {errors.email && <span className="err-msg">{errors.email}</span>}
+                  <ValidationError prefix="Email" field="email" errors={state.errors} className="err-msg" />
                 </div>
               </div>
 
@@ -224,31 +140,29 @@ const ContactForm = () => {
                   id="form-msg" 
                   name="message" 
                   rows={5}
-                  value={fields.message} 
-                  onChange={handleInput} 
-                  className={errors.message ? "input-err" : ""}
                   placeholder="Message..."
+                  required
                 />
-                {errors.message && <span className="err-msg">{errors.message}</span>}
+                <ValidationError prefix="Message" field="message" errors={state.errors} className="err-msg" />
               </div>
 
               <button 
                 type="submit" 
                 className="glow-btn-primary form-submit-btn" 
-                disabled={isSubmitting}
+                disabled={state.submitting}
               >
-                {isSubmitting ? "Submitting Request..." : "Send Message Request"}
+                {state.submitting ? "Submitting Request..." : "Send Message Request"}
               </button>
             </form>
           </div>
         </div>
 
         {/* Success Modal Overlay */}
-        {createPortal(<div className={`success-modal-overlay ${showSuccessOverlay ? "active" : ""}`} onClick={() => setShowSuccessOverlay(false)}>
-          <div className="success-modal glass-panel" onClick={(e) => e.stopPropagation()}>
-            <button className="success-close-btn" onClick={() => setShowSuccessOverlay(false)} aria-label="Close modal">
+        {state.succeeded && createPortal(<div className="success-modal-overlay active">
+          <div className="success-modal glass-panel">
+            <a href="/" className="success-close-btn" aria-label="Close modal">
               <FaXmark />
-            </button>
+            </a>
             
             <div className="success-modal-inner">
               <div className="success-check-wrapper">
@@ -258,9 +172,9 @@ const ContactForm = () => {
               <p>
                 Thank you for contacting <strong>{agencyConfig.brand.name}</strong>. Our digital design leads will review your inquiry and connect with you on WhatsApp/Email within the next 24 hours.
               </p>
-              <button className="glow-btn-primary success-ok-btn" onClick={() => setShowSuccessOverlay(false)}>
+              <a href="/" className="glow-btn-primary success-ok-btn">
                 Awesome, Got It!
-              </button>
+              </a>
             </div>
           </div>
         </div>, document.body)}

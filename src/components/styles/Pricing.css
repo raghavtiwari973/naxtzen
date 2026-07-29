@@ -194,6 +194,14 @@
   text-align: center;
 }
 
+.pricing-card-ctas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
 .plan-enterprise-note {
   font-size: 11px;
   line-height: 1.4;

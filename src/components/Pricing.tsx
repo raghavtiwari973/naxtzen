@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { agencyConfig, PricingPlan } from "../data/agencyConfig";
-import { FaCircleCheck, FaStar, FaXmark, FaArrowRight } from "react-icons/fa6";
+import { FaCircleCheck, FaStar, FaXmark, FaArrowRight, FaWhatsapp } from "react-icons/fa6";
 import { smoother } from "./Navbar";
 import "./styles/Pricing.css";
 
@@ -96,25 +96,30 @@ const Pricing = () => {
                 <FaStar className="star-icon" /> {getPlanBadge(plan.name)}
               </div>
 
-              <div className="pricing-card-header">
+              <div className="pricing-card-header" style={{ flex: 1 }}>
                 <h3>{plan.name}</h3>
                 <p className="plan-audience">{plan.suitableFor}</p>
-                <div className="plan-price-wrapper">
-                  <span className="price-val" style={{ color: getPlanTheme(plan.name) }}>
-                    {plan.price}
-                  </span>
-                </div>
               </div>
 
               <div className="pricing-card-footer" style={{ marginTop: "auto" }}>
-                <button 
-                  type="button"
-                  className={`pricing-cta-btn ${plan.isPopular ? "glow-btn-primary" : "glow-btn-secondary"}`}
-                  onClick={(e) => openPlanDetails(plan, e)}
-                  style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center", gap: "8px", border: "none", cursor: "pointer", padding: "12px 24px", borderRadius: "30px", fontWeight: 600, fontSize: "16px" }}
-                >
-                  View Details <FaArrowRight />
-                </button>
+                <div className="pricing-card-ctas">
+                  <a 
+                    href={agencyConfig.brand.contact.whatsapp} 
+                    className="glow-btn-primary" 
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    WhatsApp <FaWhatsapp />
+                  </a>
+                  <a 
+                    href="#contact" 
+                    className="glow-btn-secondary"
+                    onClick={(e) => handleGetStarted(plan, e)}
+                  >
+                    Contact Us
+                  </a>
+                </div>
               </div>
             </div>
           ))}
@@ -185,9 +190,6 @@ const Pricing = () => {
                   </div>
                   <h2 style={{ fontSize: "1.4rem", marginBottom: "5px" }}>{selectedPlan.name}</h2>
                   <p className="plan-audience" style={{ margin: 0, opacity: 0.8, fontSize: "0.9rem" }}>{selectedPlan.suitableFor}</p>
-                  <div className="plan-price-wrapper" style={{ marginTop: "10px", justifyContent: "center", marginBottom: 0 }}>
-                    <span className="price-val" style={{ fontSize: "1.5rem", fontWeight: "bold", color: getPlanTheme(selectedPlan.name) }}>{selectedPlan.price}</span>
-                  </div>
                 </div>
 
                 <div className="pricing-divider" style={{ width: "100%", height: "1px", backgroundColor: "rgba(255, 255, 255, 0.1)", margin: "15px 0" }}></div>
@@ -203,15 +205,28 @@ const Pricing = () => {
                 </ul>
 
                 <div className="pricing-card-footer" style={{ marginTop: "20px", padding: 0 }}>
-                  <button
-                    type="button"
-                    className={`pricing-cta-btn ${selectedPlan.isPopular ? "glow-btn-primary" : "glow-btn-secondary"}`}
-                    style={{ width: "100%", display: "block", textAlign: "center", padding: "12px 24px", borderRadius: "30px", fontWeight: 600, boxSizing: "border-box", border: "none", cursor: "pointer", fontSize: "16px" }}
-                    onClick={(e) => handleGetStarted(selectedPlan, e)}
-                  >
-                    {selectedPlan.ctaText}
-                  </button>
-                  
+                  <div className="pricing-card-ctas"> {/* Re-using the same class for consistency */}
+                    <a
+                      href={agencyConfig.brand.contact.whatsapp}
+                      className="glow-btn-primary"
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={(e) => e.stopPropagation()} // Prevent modal from closing when clicking WhatsApp link
+                    >
+                      WhatsApp <FaWhatsapp />
+                    </a>
+                    <a
+                      href="#contact"
+                      className="glow-btn-secondary"
+                      onClick={(e) => {
+                        handleGetStarted(selectedPlan, e);
+                        setSelectedPlan(null); // Close modal after clicking Contact Us
+                      }}
+                    >
+                      {selectedPlan.ctaText}
+                    </a>
+                  </div>
+
                   {selectedPlan.note && (
                     <p className="plan-enterprise-note" style={{ marginTop: "10px", fontSize: "0.8rem", opacity: 0.7, textAlign: "center", lineHeight: 1.3 }}>
                       {selectedPlan.note}
