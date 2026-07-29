@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { agencyConfig, PricingPlan } from "../data/agencyConfig";
-import { FaCircleCheck, FaStar, FaXmark, FaArrowRight, FaWhatsapp } from "react-icons/fa6";
+import { FaCircleCheck, FaStar, FaXmark, FaWhatsapp } from "react-icons/fa6";
 import { smoother } from "./Navbar";
 import "./styles/Pricing.css";
 
@@ -52,11 +52,7 @@ const Pricing = () => {
     });
   };
 
-  const openPlanDetails = (plan: PricingPlan, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setSelectedPlan(plan);
-  };
+
 
   return (
     <div className="pricing-section" id="pricing">
